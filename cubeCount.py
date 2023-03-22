@@ -1,6 +1,7 @@
 import json
 import requests
 import apiToken
+import pprint
 from datetime import datetime, timedelta
 
 def maple_API(user_name,target_item):
@@ -20,11 +21,11 @@ def maple_API(user_name,target_item):
     # last = "2022-11-26" #test용
     start_date = datetime.strptime(start, "%Y-%m-%d")
     last_date = datetime.strptime(last, "%Y-%m-%d")
-
+    
     ###### api 조회 #########
     while start_date <= last_date:
         dates = start_date.strftime("%Y-%m-%d")
-        #print("날짜 :",dates)
+        print("날짜 :",dates)
         headers = {
             "authorization" : key
         }
