@@ -19,8 +19,8 @@ async def on_ready():
 @bot.command()
 async def 도움(ctx):
     embed = discord.Embed(title="큐브 사용 내역",color=0x00ff00)
-    embed.add_field(name="/큐브 <닉네임> <아이템 이름>", value="아이템에 넣은 큐브 목록을 보여줍니다.", inline=False)
-    embed.add_field(name="/help", value="도움말 출력", inline=False)
+    embed.add_field(name="!큐브 <닉네임> <아이템 이름>", value="아이템에 넣은 큐브 목록을 보여줍니다.", inline=False)
+    embed.add_field(name="!help", value="도움말 출력", inline=False)
     embed.add_field(name="추가 예정", value="", inline=False)
     embed.add_field(name="추가 예정", value="", inline=False)
     await ctx.channel.send(embed=embed)
