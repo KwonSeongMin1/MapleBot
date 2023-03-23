@@ -1,13 +1,13 @@
 import json
 import requests
-import apiToken
+import apiToken #중요한 api key들 
 import pprint
 from datetime import datetime, timedelta
 
 def maple_API(user_name,target_item):
     ############ 큐브 api 관련 소스 ###########
     url = 'https://public.api.nexon.com/openapi/maplestory/v1/cube-use-results'
-    key = apiToken.key[user_name]
+    key = apiToken.key[user_name]   #해당 키 부분은 따로 파일을 만들어서 입력해주세요. {캐릭터명:api key} 형태로 입력했습니다.
     
     ####### 장큡 명큡 레큡 블큡 #######
     j_cu = 0
