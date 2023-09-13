@@ -1,5 +1,4 @@
 import requests
-import apiToken #중요한 api key들 
 import sqlite3
 from datetime import datetime, timedelta
 
@@ -8,10 +7,6 @@ cursor = conn.cursor()
 
 def update_cube_count(name,j_cu,m_cu,r_cu,b_cu):
     cursor.execute('update cubeCount set j_cu=?,m_cu=?,r_cu=?,b_cu=? where name=?;',(j_cu,m_cu,r_cu,b_cu,name))
-    if cursor.rowcount > 0:
-        return 1
-    else:
-        return 0 
     
 def maple_API(name):
     ############ 큐브 api 관련 소스 ###########

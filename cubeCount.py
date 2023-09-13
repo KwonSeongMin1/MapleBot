@@ -3,7 +3,6 @@
 
 import json
 import requests
-import apiToken #중요한 api key들 
 import pprint
 from datetime import datetime, timedelta
 

@@ -1,32 +1,32 @@
 import discord
-import apiToken
-import cubeCount
 import findUser
 import cube
 from discord.ext.commands import Bot
 
 
-############# 디코 봇 코드 ################
+############# discord bot start ################
 intents = discord.Intents.all()
-# /명령어
+# !<asdf>
 bot = Bot(command_prefix='!', intents=intents)
 
 @bot.event
 async def on_ready():
   await bot.change_presence(status=discord.Status.online, activity=discord.Game("!도움 을 입력하세요"))
 
-################## 도움말 #####################
+################## !help #####################
 @bot.command()
 async def 도움(ctx):
-    embed = discord.Embed(title="큐브 사용 내역",color=0x00ff00)
-    embed.add_field(name="!큐브 <닉네임> <아이템 이름>", value="아이템에 넣은 큐브 목록을 보여줍니다.\n 22/11/25 이후 큐브 내역을 보여줍니다.", inline=False)
+    embed = discord.Embed(title="큐브 얼마나 쳐먹었냐 ㅋㅋ",color=0x00ff00)
+    embed.add_field(name="!큐브 <닉네임>", value="22/11/25 이후 큐브 내역을 보여줍니다.", inline=False)
     embed.add_field(name="!도움", value="도움말 출력", inline=False)
+    embed.add_field(name="!정보넣기 <닉네임> <토큰>", value="토큰은 메이플 api센터에서 알아서 가져와라 띠벌", inline=False)
+    embed.add_field(name="!업데이트 <닉네임>", value="정보 넣고 기다리셈 오래걸림..띠벌 ㅠ", inline=False)
     embed.add_field(name="!찾기 <닉네임>", value="찾고 싶은 사람의 무릉 층수, 레벨을 표시합니다.", inline=False)
     embed.add_field(name="추가 예정", value="", inline=False)
     await ctx.channel.send(embed=embed)
   
 
-################## 큐브 사용 내역 ##################### 점검중
+################## 큐브 사용 내역 #####################
 @bot.command()
 async def 큐브(ctx,name):
     await ctx.reply('❗️❗️❗️얼마나 썼냐 ㅋㅋ❗️❗️❗️')
@@ -54,9 +54,6 @@ async def 업데이트(ctx,name):
     await ctx.reply('❗️❗️❗️오래걸립니다... 기다려!❗️❗️❗️')
     cube.maple_API(name)
     await ctx.reply('최신 버전입니다.')
-
-
-    
     
 ################## 찾기 #####################
 @bot.command()
