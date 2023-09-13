@@ -2,6 +2,7 @@ import discord
 import apiToken
 import cubeCount
 import findUser
+import cube
 from discord.ext.commands import Bot
 
 
@@ -25,11 +26,11 @@ async def 도움(ctx):
     await ctx.channel.send(embed=embed)
   
 
-################## 큐브 사용 내역 #####################
+################## 큐브 사용 내역 ##################### 점검중
 @bot.command()
-async def 큐브(ctx,name,*,target_item):
-    await ctx.reply('❗️❗️❗️시간이 다소 걸립니다.\n결과가 나오기 전 까지 기다려 주세요.')
-    result = cubeCount.maple_API(name,target_item)
+async def 큐브(ctx,name):
+    await ctx.reply('❗️❗️❗️얼마나 썼냐 ㅋㅋ❗️❗️❗️')
+    result = cube.cube_count(name)
     used_meso = 12500000*result[2] + 22600000*result[3]
     embed = discord.Embed(title="큐브 사용 내역",color=0xFF0000)
     embed.add_field(name="장인의 큐브", value=result[0], inline=False)
@@ -38,6 +39,23 @@ async def 큐브(ctx,name,*,target_item):
     embed.add_field(name="블랙 큐브", value=result[3], inline=False)
     embed.set_footer(text = "꼴은 돈(리부트 기준, 장큡 명큡은 계산 안함) = %s 메소"%format(used_meso,','))
     await ctx.channel.send(embed=embed)
+
+@bot.command()
+async def 정보넣기(ctx,name,token):
+    flag = cube.create_table(name,token)
+    print(flag)
+    if flag==None:
+        await ctx.reply('정보를 입력하였습니다.\n!업데이트 <닉네임> 명령어를 입력하여 정보를 업데이트하세요.')
+    else: await ctx.reply('❗️❗️❗️이미 등록되어있는 닉네임입니다.❗️❗️❗️')
+    
+
+@bot.command()
+async def 업데이트(ctx,name):
+    await ctx.reply('❗️❗️❗️오래걸립니다... 기다려!❗️❗️❗️')
+    cube.maple_API(name)
+    await ctx.reply('최신 버전입니다.')
+
+
     
     
 ################## 찾기 #####################
@@ -49,11 +67,6 @@ async def 찾기(ctx,name):
     embed.add_field(name='레벨',value=result[1],inline=False)
     embed.add_field(name='무릉 층수',value=result[0],inline=False)
     await ctx.channel.send(embed=embed)
-    
-################## test용 #####################
-@bot.command()
-async def 테스트(ctx):
-    await ctx.channel.send("이것은 TTS 테스트라고 합니다!",tts=True)
     
 ########################################
 bot.run(apiToken.token)
